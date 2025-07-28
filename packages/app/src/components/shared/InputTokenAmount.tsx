@@ -69,13 +69,15 @@ export const InputTokenAmount: FC<Props> = ({
               'placeholder:text-gray-400',
             )}
           />
-          <button
-            type="button"
-            onClick={onButtonClick}
-            className="bg-[#401BE4] text-white px-2 sm:px-3 py-1 rounded-xl  font-medium hover:bg-[#401BE4]/90 transition-colors cursor-pointer whitespace-nowrap max-w-[120px] sm:max-w-none truncate flex-shrink-0"
-          >
-            {symbol ?? defaultSymbol}
-          </button>
+          {symbol && (
+            <button
+              type="button"
+              onClick={onButtonClick}
+              className="bg-[#401BE4] text-white px-2 sm:px-3 py-1 rounded-xl  font-medium hover:bg-[#401BE4]/90 transition-colors cursor-pointer whitespace-nowrap max-w-[120px] sm:max-w-none truncate flex-shrink-0"
+            >
+              {symbol ?? defaultSymbol}
+            </button>
+          )}
         </div>
         <div className={cn('flex flex-row justify-between gap-2 items-center w-full min-w-0')}>
           <div className="text-xs text-gray-500 truncate min-w-0 flex-1">

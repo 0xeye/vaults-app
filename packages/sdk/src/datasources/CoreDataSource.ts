@@ -1,6 +1,6 @@
+import { erc20Abi, erc4626Abi } from '@vaults4626/contracts'
 import { readContract, readContracts } from '@wagmi/core'
 import { SdkContext } from '../types'
-import { erc20Abi, erc4626Abi } from '@vaults4626/contracts'
 
 export class CoreDataSource {
   private readonly queryClient
@@ -48,8 +48,6 @@ export class CoreDataSource {
     const readContractsResult = await readContracts(this.wagmiConfig, {
       contracts: readContractsCalls as any,
     })
-
-    console.log('test', readContractsResult)
 
     if (readContractsResult.length !== 5) return undefined
 
