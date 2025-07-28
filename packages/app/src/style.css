@@ -50,7 +50,7 @@ body {
 }
 
 body {
-  background: linear-gradient(to bottom, #1a51b2, #439ee5);
+  background: linear-gradient(to bottom, #999, #777);
   background-attachment: fixed;
   min-height: 100vh;
 }
