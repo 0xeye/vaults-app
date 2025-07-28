@@ -1,0 +1,10 @@
+{
+  "template": [
+    {
+      "name": "erc4626"
+    }
+  ],
+  "verified": [],
+  "erc20": [],
+  "abiSelections": {}
+}

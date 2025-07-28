@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["src/*"],
+      "@vaults4626/contracts": ["../contracts/dist"]
+    }
+  }
+}
