@@ -6,6 +6,10 @@ export interface SdkConfig {
   endpoints: {
     kong: string
     yDaemon: string
+    coingecko?: string
+  }
+  apiKeys?: {
+    coingecko?: string
   }
   defaultCacheOptions?: Partial<FetchQueryOptions>
 }

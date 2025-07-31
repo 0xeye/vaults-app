@@ -47,6 +47,10 @@ export class Sdk {
       endpoints: {
         kong: 'https://kong.yearn.farm/api/gql',
         yDaemon: 'https://ydaemon.yearn.fi',
+        coingecko: 'https://api.coingecko.com/api/v3',
+      },
+      apiKeys: {
+        coingecko: undefined,
       },
       defaultCacheOptions: {
         staleTime: 1000 * 60, // 1 minute
@@ -62,6 +66,10 @@ export class Sdk {
       endpoints: {
         ...defaultConfig.endpoints,
         ...config?.endpoints,
+      },
+      apiKeys: {
+        ...defaultConfig.apiKeys,
+        ...config?.apiKeys,
       },
       defaultCacheOptions: {
         ...defaultConfig.defaultCacheOptions,

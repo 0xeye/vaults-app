@@ -1,7 +1,9 @@
+import { useVaultDetails } from '@/hooks/useCore'
+import { usePositionValueUSD } from '@/hooks/usePrice'
+import { formatCurrency } from '@/utils'
 import { type FC, useState } from 'react'
 import { FormDeposit } from './FormDeposit'
 import { FormWithdraw } from './FormWithdraw'
-import { useVaultDetails } from '@/hooks/useCore'
 
 const Button: FC<{
   children: React.ReactNode
@@ -26,6 +28,11 @@ export const FormSection: FC = () => {
   )
   const { data: vaultDetails } = useVaultDetails(vaultAddress as `0x${string}` | undefined)
 
+  const valueUSD = usePositionValueUSD(
+    vaultDetails?.asset?.address as string,
+    vaultDetails?.user.assets,
+  )
+
   return (
     <>
       <div className="flex flex-col gap-4">
@@ -35,6 +42,12 @@ export const FormSection: FC = () => {
               <div className="flex-1">
                 <p className="text-white text-lg font-medium">{vaultDetails.name}</p>
                 <p className="text-sm text-white/60 mt-1">{vaultAddress}</p>
+                {valueUSD && (
+                  <p className="text-sm text-white/60 mt-1">
+                    {'User Position: '}
+                    {formatCurrency(valueUSD)}
+                  </p>
+                )}
               </div>
               <button
                 type="button"
@@ -111,7 +124,6 @@ export const FormSection: FC = () => {
           </div>
         </div>
       </div>
-
     </>
   )
 }

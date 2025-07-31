@@ -22,8 +22,10 @@ export default defineConfig(({ mode }) => {
       esbuildOptions: {
         jsx: 'automatic',
       },
-      // Include workspace packages to be pre-bundled
-      include: ['@vaults4626/sdk', '@vaults4626/contracts'],
+      // In dev mode, exclude workspace packages to enable hot reload
+      // In production, include them for pre-bundling
+      include: isDev ? [] : ['@ysplitter/sdk', '@ysplitter/contracts'],
+      exclude: isDev ? ['@ysplitter/sdk', '@ysplitter/contracts'] : [],
     },
     define: {
       global: 'globalThis',

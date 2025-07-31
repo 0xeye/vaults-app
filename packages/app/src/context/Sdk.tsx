@@ -6,7 +6,11 @@ import { type FC, PropsWithChildren, createContext, useContext, useMemo } from '
 const context = createContext<Sdk>(null as never)
 
 export const SdkProvider: FC<PropsWithChildren> = ({ children }) => {
-  const sdk = useMemo(() => Sdk.create(queryClient, config), [])
+  const sdk = useMemo(() => Sdk.create(queryClient, config, {
+    apiKeys: {
+      coingecko: import.meta.env.VITE_COINGECKO_API_KEY
+    }
+  }), [])
   return <context.Provider value={sdk}>{children}</context.Provider>
 }
 

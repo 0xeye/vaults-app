@@ -2,6 +2,7 @@ import { QueryClient } from '@tanstack/react-query'
 
 // Key store for all queries
 export const queryKeys = {
+  tokenPrice: (tokenAddress?: string) => ['tokenPrice', tokenAddress] as const,
   vaultDetails: (chainId: number, vaultAddress?: `0x${string}`) =>
     ['vaultDetails', vaultAddress, chainId] as const,
 } as const
