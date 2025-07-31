@@ -21,31 +21,75 @@ const Button: FC<{
 
 export const FormSection: FC = () => {
   const [mode, setMode] = useState<'deposit' | 'withdraw'>('deposit')
-  const [vaultAddress, setVaultAddress] = useState<`0x${string}` | undefined>(
+  const [vaultAddress, setVaultAddress] = useState<string>(
     '0x028eC7330ff87667b6dfb0D94b954c820195336c',
   )
-  const { data: vaultDetails } = useVaultDetails(vaultAddress)
+  const { data: vaultDetails } = useVaultDetails(vaultAddress as `0x${string}` | undefined)
 
   return (
     <>
       <div className="flex flex-col gap-4">
-        <div className="bg-white/10 rounded-2xl p-3 flex">
-          <input
-            type="text"
-            placeholder="Enter vault address"
-            value={vaultAddress}
-            onChange={(e) => setVaultAddress(e.target.value as `0x${string}`)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-white"
-          />
-          {!!vaultAddress && (
-            <div className="flex justify-end mt-2 mx-8">
+        <div className="bg-white/10 rounded-2xl p-3">
+          {vaultDetails?.name ? (
+            <div className="bg-black/20 rounded-xl p-4 flex items-center justify-between gap-4">
+              <div className="flex-1">
+                <p className="text-white text-lg font-medium">{vaultDetails.name}</p>
+                <p className="text-sm text-white/60 mt-1">{vaultAddress}</p>
+              </div>
               <button
                 type="button"
-                onClick={() => setVaultAddress(undefined)}
-                className="text-white/60 hover:text-white transition-colors"
+                onClick={() => setVaultAddress('')}
+                className="text-white/40 hover:text-white transition-colors flex-shrink-0"
               >
-                Clear
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 4L4 12M4 4L12 12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </button>
+            </div>
+          ) : (
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Enter vault address"
+                value={vaultAddress}
+                onChange={(e) => setVaultAddress(e.target.value)}
+                className="w-full px-4 py-3 pr-10 bg-black/20 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#F6FC3B]/50 focus:border-[#F6FC3B]/50 outline-none transition-all text-white placeholder:text-white/40"
+              />
+              {!!vaultAddress && (
+                <button
+                  type="button"
+                  onClick={() => setVaultAddress('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 4L4 12M4 4L12 12"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              )}
             </div>
           )}
         </div>
@@ -60,46 +104,14 @@ export const FormSection: FC = () => {
           </div>
           <div className="bg-white rounded-xl p-2">
             {mode === 'deposit' ? (
-              <FormDeposit vaultAddress={vaultAddress} />
+              <FormDeposit vaultAddress={vaultAddress as `0x${string}` | undefined} />
             ) : (
-              <FormWithdraw vaultAddress={vaultAddress} />
+              <FormWithdraw vaultAddress={vaultAddress as `0x${string}` | undefined} />
             )}
           </div>
         </div>
       </div>
 
-      {vaultDetails && (
-        <div className="flex flex-col">
-          <div className="bg-white/10 rounded-2xl p-3">
-            <div className="space-y-2 text-white/80">
-              <div className="flex justify-between">
-                <span>Asset Symbol:</span>
-                <span className="font-mono">{vaultDetails.asset?.symbol}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Asset Address:</span>
-                <span className="font-mono">{vaultDetails.asset?.address}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Asset Decimals:</span>
-                <span className="font-mono">{vaultDetails.asset?.decimals}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Vault Address:</span>
-                <span className="font-mono">{vaultDetails.address}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>User Assets:</span>
-                <span className="font-mono">{vaultDetails.user?.assets?.toString()}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>User Shares:</span>
-                <span className="font-mono">{vaultDetails.user?.shares?.toString()}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   )
 }
