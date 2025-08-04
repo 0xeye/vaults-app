@@ -1,8 +1,6 @@
-// !INJECTED
-import { mainnet } from 'viem/chains'
+import { arbitrum, base, mainnet, optimism, polygon } from 'viem/chains'
 
-// !INJECTED
-export const supportedChains = [mainnet] as const
+export const supportedChains = [mainnet, base, arbitrum, optimism, polygon] as const
 
 export type SupportedChain = (typeof supportedChains)[number]['id']
 

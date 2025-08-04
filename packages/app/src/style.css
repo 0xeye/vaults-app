@@ -50,7 +50,7 @@ body {
 }
 
 body {
-  background: linear-gradient(to bottom, #999, #777);
+  background: #fff;
   background-attachment: fixed;
   min-height: 100vh;
 }
@@ -66,21 +66,21 @@ p {
 /* -- Button.tsx ------------------------------------------------------- */
 .yearn--button {
   @apply cursor-pointer px-5 flex justify-center items-center h-10 text-base transition-all relative;
-  border-radius: var(--default-rounded);
+  border-radius: 12px;
 
   &[data-variant="filled"] {
-    @apply bg-blue-200 font-semibold border border-transparent;
+    @apply bg-blue-300 font-medium border border-transparent;
     &:disabled {
-      @apply bg-neutral-700 opacity-40;
+      @apply !bg-black/5 !text-black/20;
     }
     &:not(:disabled):not([aria-busy="true"]):hover {
       @apply bg-blue-300;
     }
   }
   &[data-variant="loading"] {
-    @apply text-neutral-900 bg-blue-200 font-semibold border border-transparent;
+    @apply text-neutral-900 bg-blue-200 font-medium border border-transparent;
     &:disabled {
-      @apply bg-blue-200 opacity-40;
+      @apply bg-blue-300 opacity-40;
     }
   }
   &[data-variant="light"] {
@@ -102,7 +102,7 @@ p {
     }
   }
   &[data-variant="error"] {
-    @apply text-neutral-900  font-semibold border border-transparent;
+    @apply text-neutral-900 font-medium border border-transparent;
     &:disabled {
       @apply bg-neutral-200 opacity-40;
     }

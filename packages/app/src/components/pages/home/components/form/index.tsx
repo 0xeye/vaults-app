@@ -36,23 +36,54 @@ export const FormSection: FC = () => {
   return (
     <>
       <div className="flex flex-col gap-4">
-        <div className="bg-white/10 rounded-2xl p-3">
-          {vaultDetails?.name ? (
-            <div className="bg-black/20 rounded-xl p-4 flex items-center justify-between gap-4">
-              <div className="flex-1">
-                <p className="text-white text-lg font-medium">{vaultDetails.name}</p>
-                <p className="text-sm text-white/60 mt-1">{vaultAddress}</p>
-                {valueUSD && (
-                  <p className="text-sm text-white/60 mt-1">
-                    {'User Position: '}
-                    {formatCurrency(valueUSD)}
-                  </p>
-                )}
-              </div>
+        {vaultDetails?.name ? (
+          <div className="bg-blue-500/10 rounded-xl p-4 flex items-center justify-between gap-4 border-blue-500/10 border">
+            <div className="flex-1">
+              <p className="text-black text-lg font-medium">{vaultDetails.name}</p>
+              <p className="text-sm text-blue-500 mt-1">{vaultAddress}</p>
+              {!!valueUSD && (
+                <p className="text-sm text-black/60 mt-1">
+                  {'User Position: '}
+                  {formatCurrency(valueUSD)}
+                </p>
+              )}
+            </div>
+            <button
+              type="button"
+              onClick={() => setVaultAddress('')}
+              className="text-black/40 hover:text-black transition-colors flex-shrink-0"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 4L4 12M4 4L12 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        ) : (
+          <div className="flex">
+            <input
+              type="text"
+              placeholder="Enter vault address"
+              value={vaultAddress}
+              onChange={(e) => setVaultAddress(e.target.value)}
+              className="w-full px-4 py-3 pr-10 bg-blue-500/10 border border-blue-500/10 rounded-xl focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 outline-none transition-all text-blue-500 placeholder:text-blue-500"
+            />
+            {!!vaultAddress && (
               <button
                 type="button"
                 onClick={() => setVaultAddress('')}
-                className="text-white/40 hover:text-white transition-colors flex-shrink-0"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors"
               >
                 <svg
                   width="16"
@@ -70,43 +101,10 @@ export const FormSection: FC = () => {
                   />
                 </svg>
               </button>
-            </div>
-          ) : (
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Enter vault address"
-                value={vaultAddress}
-                onChange={(e) => setVaultAddress(e.target.value)}
-                className="w-full px-4 py-3 pr-10 bg-black/20 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#F6FC3B]/50 focus:border-[#F6FC3B]/50 outline-none transition-all text-white placeholder:text-white/40"
-              />
-              {!!vaultAddress && (
-                <button
-                  type="button"
-                  onClick={() => setVaultAddress('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors"
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 4L4 12M4 4L12 12"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-              )}
-            </div>
-          )}
-        </div>
-        <div className="bg-white/10 rounded-2xl p-3">
+            )}
+          </div>
+        )}
+        <div className="bg-black/5 rounded-2xl p-1">
           <div className="bg-black/15 p-0.5 rounded-xl flex gap-1 mb-2">
             <Button onClick={() => setMode('deposit')} isActive={mode === 'deposit'}>
               Deposit

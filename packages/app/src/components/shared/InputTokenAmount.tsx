@@ -73,7 +73,7 @@ export const InputTokenAmount: FC<Props> = ({
             <button
               type="button"
               onClick={onButtonClick}
-              className="bg-[#401BE4] text-white px-2 sm:px-3 py-1 rounded-xl  font-medium hover:bg-[#401BE4]/90 transition-colors cursor-pointer whitespace-nowrap max-w-[120px] sm:max-w-none truncate flex-shrink-0"
+              className="bg-blue-300 text-neutral-900 px-2 sm:px-3 py-1 rounded-xl  font-medium hover:bg-blue-300 transition-colors cursor-pointer whitespace-nowrap max-w-[120px] sm:max-w-none truncate flex-shrink-0"
             >
               {symbol ?? defaultSymbol}
             </button>

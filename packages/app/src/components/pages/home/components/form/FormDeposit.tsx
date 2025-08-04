@@ -79,37 +79,30 @@ export const FormDeposit: FC<{ vaultAddress?: `0x${string}` }> = ({ vaultAddress
       />
 
       {/* Action Button */}
-      <div className="flex gap-1">
+      {input[0].touched ? (
+        <div className="flex gap-1">
+          <TxButton
+            prepareWrite={prepareApprove}
+            transactionName="Approve"
+            disabled={!prepareApproveEnabled}
+            className="w-full"
+          />
+          <TxButton
+            prepareWrite={prepareDeposit}
+            transactionName={`Deposit ${vaultDetails?.asset?.symbol || ''}`}
+            disabled={!prepareDepositEnabled}
+            onSuccess={handleDepositSuccess}
+            className="w-full"
+          />
+        </div>
+      ) : (
         <TxButton
           prepareWrite={prepareApprove}
-          transactionName="Approve"
+          transactionName="Enter an amount"
           disabled={!prepareApproveEnabled}
           className="w-full"
-          style={{
-            backgroundColor: '#401BE4',
-            color: 'white',
-            padding: '12px',
-            borderRadius: '12px',
-            fontWeight: 500,
-            fontSize: '16px',
-          }}
         />
-        <TxButton
-          prepareWrite={prepareDeposit}
-          transactionName={`Deposit ${vaultDetails?.asset?.symbol || ''}`}
-          disabled={!prepareDepositEnabled}
-          onSuccess={handleDepositSuccess}
-          className="w-full"
-          style={{
-            backgroundColor: '#401BE4',
-            color: 'white',
-            padding: '12px',
-            borderRadius: '12px',
-            fontWeight: 500,
-            fontSize: '16px',
-          }}
-        />
-      </div>
+      )}
 
       {/* Modals */}
       <SuccessModal open={isSuccessModalOpen} onClose={() => setIsSuccessModalOpen(false)} />
