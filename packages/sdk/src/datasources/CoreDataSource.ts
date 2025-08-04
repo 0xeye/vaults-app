@@ -8,7 +8,7 @@ export class CoreDataSource extends BaseDataSource {
     super(context, 'core')
   }
 
-  protected getEndpoint(chainId?: number): string | undefined {
+  protected getEndpoint(_chainId?: number): string | undefined {
     return undefined
   }
 
