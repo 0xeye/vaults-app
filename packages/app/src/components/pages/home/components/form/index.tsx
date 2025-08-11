@@ -35,12 +35,11 @@ export const FormSection: FC = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 mt-16">
         {vaultDetails?.name ? (
           <div className="bg-blue-500/10 rounded-xl p-4 flex items-center justify-between gap-4 border-blue-500/10 border">
             <div className="flex-1">
               <p className="text-black text-lg font-medium">{vaultDetails.name}</p>
-              <p className="text-sm text-blue-500 mt-1">{vaultAddress}</p>
               {!!valueUSD && (
                 <p className="text-sm text-black/60 mt-1">
                   {'User Position: '}
@@ -77,7 +76,7 @@ export const FormSection: FC = () => {
               placeholder="Enter vault address"
               value={vaultAddress}
               onChange={(e) => setVaultAddress(e.target.value)}
-              className="w-full px-4 py-3 pr-10 bg-blue-500/10 border border-blue-500/10 rounded-xl focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 outline-none transition-all text-blue-500 placeholder:text-blue-500"
+              className="w-full p-4.5 pr-10 bg-blue-500/10 border border-blue-500/10 rounded-xl focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 outline-none transition-all text-blue-500 placeholder:text-blue-500"
             />
             {!!vaultAddress && (
               <button
