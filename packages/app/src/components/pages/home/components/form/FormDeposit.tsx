@@ -69,7 +69,7 @@ export const FormDeposit: FC<{ vaultAddress?: `0x${string}` }> = ({ vaultAddress
         placeholder="0.00"
         className="flex-1"
         symbol={vaultDetails?.asset?.symbol}
-        balance={vaultDetails?.user?.assets}
+        balance={assetBalance}
       />
 
       <QuickStackInput
