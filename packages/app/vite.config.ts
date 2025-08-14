@@ -24,8 +24,8 @@ export default defineConfig(({ mode }) => {
       },
       // In dev mode, exclude workspace packages to enable hot reload
       // In production, include them for pre-bundling
-      include: isDev ? [] : ['@ysplitter/sdk', '@ysplitter/contracts'],
-      exclude: isDev ? ['@ysplitter/sdk', '@ysplitter/contracts'] : [],
+      include: isDev ? [] : ['@vaults4626/sdk', '@vaults4626/contracts'],
+      exclude: isDev ? ['@vaults4626/sdk', '@vaults4626/contracts'] : [],
     },
     define: {
       global: 'globalThis',
@@ -34,22 +34,12 @@ export default defineConfig(({ mode }) => {
       port: 3000,
     },
     build: {
-      outDir: 'build',
+      outDir: 'dist',
     },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
-        // In development, use source files directly
-        // In production, Vite will use the package.json exports
-        ...(isDev
-          ? {
-              '@vaults4626/sdk': path.resolve(__dirname, '../sdk/src/index.ts'),
-              '@vaults4626/contracts': path.resolve(__dirname, '../contracts/src/wagmi.ts'),
-            }
-          : {}),
       },
-      // This tells Vite to use the 'development' export condition in dev mode
-      conditions: isDev ? ['development'] : [],
     },
   }
 })

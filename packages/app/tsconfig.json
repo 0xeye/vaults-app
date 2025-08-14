@@ -1,14 +1,14 @@
 {
   "extends": "../../tsconfig.json",
   "include": ["src/**/*"],
-  "exclude": ["build", "node_modules"],
+  "exclude": ["dist", "node_modules"],
   "compilerOptions": {
     "types": ["vite/client", "vite-plugin-svgr/client"],
     "baseUrl": ".",
     "incremental": true,
     "composite": true,
     "rootDir": "src",
-    "tsBuildInfoFile": "./build/.tsbuildinfo",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "paths": {
       "@/*": ["src/*"],
       "@vaults4626/sdk": ["../sdk/src"],

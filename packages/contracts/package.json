@@ -2,20 +2,12 @@
   "name": "@vaults4626/contracts",
   "version": "0.1.0",
   "type": "module",
-  "main": "./dist/wagmi.js",
-  "types": "./dist/wagmi.d.ts",
+  "main": "./src/wagmi.ts",
+  "module": "./src/wagmi.ts",
+  "types": "./src/wagmi.ts",
   "files": ["dist", "src"],
   "exports": {
-    ".": {
-      "types": "./src/wagmi.ts",
-      "development": "./src/wagmi.ts",
-      "default": "./dist/wagmi.js"
-    },
-    "./*": {
-      "types": "./src/*.ts",
-      "development": "./src/*.ts",
-      "default": "./dist/*.js"
-    }
+    ".": "./src/wagmi.ts"
   },
   "devDependencies": {
     "@tanstack/query-core": "*",

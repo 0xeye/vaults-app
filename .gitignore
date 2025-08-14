@@ -113,5 +113,4 @@ dist-ssr
 *.claude/*
 
 # Generated files
-packages/contracts/src/wagmi.ts
 
